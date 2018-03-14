@@ -1,15 +1,18 @@
 import json
+from json import JSONDecodeError
+import math
 import time
 from os import listdir
 from os.path import isfile, join
 
 from plot import bokeh_draw
 
-R05L = (25.073076, 121.216158)
-N5 = ()
-N7 = (25.084587, 121.232751)
-N8 = ()
-N9 = ()
+R05L = (25.073076, 121.216158, 'R05L', '^=')
+N5 = (25.081736, 121.228739, 'N5', '=$')
+N7 = (25.084587, 121.232751, 'N7', '=$')
+N8 = (25.087269, 121.235753, 'N8', '=$')
+N9 = (25.089568, 121.238610, 'N9', '=$')
+N10 = (25.092774, 121.242751, 'N10', '=$')
 
 
 def runtime():
@@ -19,9 +22,44 @@ def runtime():
 
     for fn in files:
         with open('db/' + fn, 'r') as f:
-            j = json.load(f)
+            try:
+                j = json.load(f)
+            except JSONDecodeError:
+                pass
 
-            draw(j['aircraft'], fn)
+            checkpoint(j['aircraft'], fn)
+            # draw(j['aircraft'], fn)
+
+
+def dist(p, cs, lat, lon, scale, fn, f):
+    d = pow(10000 * (p[0] - lat), 2) + pow(10000 * (p[1] - lon), 2)
+    if d < scale:
+        print(cs, d, fn, p[2], p[3])
+        print(f)
+
+
+def checkpoint(aircraft, fn):
+    for f in aircraft:
+        try:
+            if f['flight'] != '' and f['lat'] != '' and f['lon'] != '':
+                pass
+        except KeyError:
+            continue
+
+        cs = f['flight']
+        lat = f['lat']
+        lon = f['lon']
+
+        dist(R05L, cs, lat, lon, 30, fn, f)
+        dist(N5, cs, lat, lon, 5, fn, f)
+        dist(N7, cs, lat, lon, 5, fn, f)
+        dist(N8, cs, lat, lon, 5, fn, f)
+        dist(N8, cs, lat, lon, 5, fn, f)
+        dist(N9, cs, lat, lon, 5, fn, f)
+        dist(N10, cs, lat, lon, 5, fn, f)
+
+    # print('.', end='')
+    # time.sleep(0.1)
 
 
 def draw(aircraft, fn):
@@ -46,29 +84,6 @@ def draw(aircraft, fn):
     print(callsign)
 
     bokeh_draw(lat, lon, callsign, fn)
-
-
-def process(flight):
-    # print(flight['aircraft'])
-    print('time:', flight['now'])
-
-    top_lats = []
-    top_lons = []
-
-    for f in flight['aircraft']:
-        try:
-            # if precheck(f):
-            #     continue
-
-            lat, lon = check(f)
-            top_lats.append(lat)
-            top_lons.append(lon)
-
-        except KeyError:
-            pass
-
-    print(top_lats, top_lons)
-    # draw(top_lats, top_lons)
 
 
 if __name__ == '__main__':
