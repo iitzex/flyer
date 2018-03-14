@@ -5,8 +5,11 @@ from os.path import isfile, join
 
 from plot import bokeh_draw
 
-R05L = (25.072744, 121.215814)
-R05R = (25.060874, 121.223473)
+R05L = (25.073076, 121.216158)
+N5 = ()
+N7 = (25.084587, 121.232751)
+N8 = ()
+N9 = ()
 
 
 def runtime():
@@ -18,25 +21,31 @@ def runtime():
         with open('db/' + fn, 'r') as f:
             j = json.load(f)
 
-            lat = []
-            lon = []
-            callsign = []
+            draw(j['aircraft'], fn)
 
-            for f in j['aircraft']:
-                try:
-                    if f['flight'] != '' and f['lat'] != '' and f['lon'] != '':
-                        pass
-                except KeyError:
-                    continue
 
-                callsign.append(f['flight'])
-                lat.append(f['lat'])
-                lon.append(f['lon'])
-            print(lat)
-            print(lon)
-            print(callsign)
+def draw(aircraft, fn):
+    lat = []
+    lon = []
+    callsign = []
 
-        bokeh_draw(lat, lon, callsign, fn)
+    for f in aircraft:
+        try:
+            if f['flight'] != '' and f['lat'] != '' and f['lon'] != '':
+                pass
+        except KeyError:
+            continue
+
+        callsign.append(f['flight'])
+        lat.append(f['lat'])
+        lon.append(f['lon'])
+
+    print(fn)
+    print(lat)
+    print(lon)
+    print(callsign)
+
+    bokeh_draw(lat, lon, callsign, fn)
 
 
 def process(flight):
