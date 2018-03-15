@@ -115,8 +115,10 @@ def merge():
 def to_csv():
     with open('traffic.csv', 'w') as f:
         for l in merge():
-            l = "{},{},{},{}".format(l[0], l[1], l[3], l[5])
-            f.writelines(l+'\n')
+            l = "{},{},{}, {}, {}, {}".format(l[0], l[1], l[3], l[5], tstr(l[2]),
+                                           tstr(l[4]))
+            print(l)
+            f.writelines(l + '\n')
 
 
 if __name__ == '__main__':
