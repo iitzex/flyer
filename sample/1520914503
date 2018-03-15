@@ -1,0 +1,28 @@
+{ "now" : 1520914503.3,
+  "messages" : 2640,
+  "aircraft" : [
+    {"hex":"86d9b0","altitude":4275,"vert_rate":-576,"track":228,"speed":263,"messages":13,"seen":3.9,"rssi":-33.0},
+    {"hex":"88813f","squawk":"1723","flight":"VJC940  ","altitude":3875,"vert_rate":0,"track":48,"speed":190,"category":"A3","messages":31,"seen":2.7,"rssi":-33.1},
+    {"hex":"8991b5","squawk":"3654","flight":"CAL111  ","lat":25.019073,"lon":121.147512,"nucp":7,"seen_pos":0.7,"altitude":1525,"vert_rate":-832,"track":49,"speed":146,"category":"A0","messages":86,"seen":0.7,"rssi":-32.9},
+    {"hex":"76ce81","squawk":"2236","lat":24.709230,"lon":121.138104,"nucp":7,"seen_pos":19.8,"altitude":39000,"vert_rate":0,"track":36,"speed":534,"messages":53,"seen":0.2,"rssi":-33.1},
+    {"hex":"899318","altitude":"ground","track":50,"speed":36,"messages":2,"seen":2.9,"rssi":-38.1},
+    {"hex":"861e4e","squawk":"3646","flight":"ANA873  ","lat":24.844464,"lon":121.092345,"nucp":7,"seen_pos":29.1,"altitude":36000,"vert_rate":0,"track":230,"speed":388,"category":"A0","messages":34,"seen":3.5,"rssi":-33.0},
+    {"hex":"79a046","flight":"CES2010 ","lat":25.432526,"lon":121.336772,"nucp":7,"seen_pos":31.3,"altitude":14550,"vert_rate":1920,"track":49,"speed":321,"messages":13,"seen":18.7,"rssi":-32.7},
+    {"hex":"899051","flight":"CAL582  ","altitude":30000,"vert_rate":0,"track":216,"speed":392,"messages":16,"seen":1.5,"rssi":-33.7},
+    {"hex":"899101","squawk":"3757","lat":25.395456,"lon":121.458521,"nucp":7,"seen_pos":20.8,"altitude":9800,"vert_rate":-1472,"track":229,"speed":284,"messages":35,"seen":3.9,"rssi":-32.9},
+    {"hex":"89932a","flight":"FE108   ","altitude":"ground","track":47,"speed":13,"category":"C2","messages":58,"seen":0.1,"rssi":-33.1},
+    {"hex":"8991b3","squawk":"3653","flight":"CAL121  ","lat":25.114653,"lon":121.249470,"nucp":7,"seen_pos":0.1,"altitude":8875,"vert_rate":64,"track":271,"speed":258,"messages":147,"seen":0.1,"rssi":-33.4},
+    {"hex":"780b81","flight":"CES5012 ","altitude":"ground","speed":0,"category":"A0","messages":11,"seen":6.1,"rssi":-31.6},
+    {"hex":"7500c8","squawk":"2132","flight":"XAX378  ","lat":25.071732,"lon":121.214438,"nucp":7,"seen_pos":0.2,"altitude":25,"vert_rate":-640,"track":49,"speed":137,"category":"A5","messages":422,"seen":0.0,"rssi":-32.7},
+    {"hex":"88809e","squawk":"2000","flight":"HVN577  ","altitude":"ground","track":123,"speed":0,"category":"A0","messages":52,"seen":0.1,"rssi":-32.1},
+    {"hex":"78018f","squawk":"6274","flight":"CPA421  ","altitude":"ground","track":230,"speed":17,"category":"A0","messages":130,"seen":0.1,"rssi":-30.8},
+    {"hex":"78090e","squawk":"2661","flight":"CCA150  ","altitude":"ground","track":317,"speed":0,"messages":11,"seen":17.4,"rssi":-33.8},
+    {"hex":"781057","squawk":"2763","flight":"DKH1310 ","altitude":"ground","track":317,"speed":0,"category":"A3","messages":18,"seen":41.4,"rssi":-32.8},
+    {"hex":"75041c","squawk":"2124","altitude":"ground","track":137,"speed":12,"category":"A0","messages":71,"seen":0.1,"rssi":-33.1},
+    {"hex":"8990a9","squawk":"2632","flight":"CAL731  ","altitude":"ground","track":45,"speed":3,"category":"A0","messages":168,"seen":0.1,"rssi":-31.5},
+    {"hex":"780041","squawk":"6270","flight":"CSZ9076 ","altitude":"ground","track":95,"speed":0,"category":"A0","messages":178,"seen":0.0,"rssi":-32.0},
+    {"hex":"780ac7","squawk":"2650","flight":"CRK253  ","lat":25.097443,"lon":121.270599,"nucp":7,"seen_pos":3.6,"altitude":1650,"vert_rate":1536,"track":49,"speed":204,"category":"A5","messages":710,"seen":0.3,"rssi":-33.2},
+    {"hex":"780512","squawk":"4016","altitude":"ground","track":233,"speed":8,"messages":95,"seen":0.1,"rssi":-32.4},
+    {"hex":"899076","squawk":"5713","flight":"EVA892  ","altitude":"ground","track":137,"speed":11,"category":"A3","messages":286,"seen":1.2,"rssi":-32.7}
+  ]
+}
