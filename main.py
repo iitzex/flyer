@@ -35,10 +35,6 @@ def runtime():
 
             checkpoint(j['aircraft'], fn)
 
-    for f in traffic:
-        tstr = datetime.fromtimestamp(int(f[2])).strftime('%H:%M:%S')
-        print(f[0], f[3], tstr)
-
 
 def dist(p, scale, f, fn):
     cs = f['flight']
@@ -95,5 +91,34 @@ def draw(aircraft, fn):
     bokeh_draw(lat, lon, callsign, fn)
 
 
+def tstr(t):
+    tstr = datetime.fromtimestamp(int(t)).strftime('%H:%M:%S')
+    return tstr
+
+
+def merge():
+    seq = []
+    for i, f in enumerate(traffic):
+
+        try:
+            n = traffic[i + 1]
+            if f[0] == n[0]:
+                seq.append((f[0], f[3], f[2], n[3], n[2],
+                            int(n[2]) - int(f[2])))
+
+        except IndexError:
+            pass
+
+    return seq
+
+
+def to_csv():
+    with open('traffic.csv', 'w') as f:
+        for l in merge():
+            l = "{},{},{},{}".format(l[0], l[1], l[3], l[5])
+            f.writelines(l+'\n')
+
+
 if __name__ == '__main__':
     runtime()
+    to_csv()
