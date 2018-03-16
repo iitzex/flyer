@@ -1,3 +1,4 @@
+import csv
 import subprocess
 
 import requests
@@ -16,16 +17,17 @@ def findbyCallsign(flight):
     return actype
 
 
-def findbyHex(hex):
-    r = subprocess.check_output(['grep', hex, 'aircraftDatabase.csv'])
-    t = r.decode("utf-8").split(',')[5]
+d = {}
+with open('aircraftDatabase.csv', newline='') as f:
+    reader = csv.reader(f)
+    d = dict((rows[0], rows[5]) for rows in reader)
 
-    return t
+
+def findbyHex(hex):
+    return d[hex]
+
 
 if __name__ == '__main__':
-    # callsign = 'EVA396'
-    # findbyCallsign(callsign)
-
     hex = '89906d'
     t = findbyHex(hex)
     print(t)
