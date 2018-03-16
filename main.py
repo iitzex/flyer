@@ -16,6 +16,9 @@ N9 = (25.089568, 121.238610, 'N9  ', '=$')
 N10 = (25.092774, 121.242751, 'N10 ', '=$')
 Start = (R05L)
 Exit = (N5, N7, N8, N9, N10)
+SCALE_MAX = 500
+SCALE_MIN = 50
+
 
 lookup = {}
 traffic = []
@@ -62,9 +65,9 @@ def checkpoint(aircraft, fn):
         except KeyError:
             continue
 
-        dist(R05L, 30, f, fn)
+        dist(R05L, SCALE_MAX, f, fn)
         for e in Exit:
-            dist(e, 5, f, fn)
+            dist(e, SCALE_MIN, f, fn)
 
 
 def draw(aircraft, fn):
@@ -91,6 +94,16 @@ def draw(aircraft, fn):
     bokeh_draw(lat, lon, callsign, fn)
 
 
+def draw_single(fn):
+    with open('db/' + fn, 'r') as f:
+        try:
+            j = json.load(f)
+        except JSONDecodeError:
+            pass
+
+        draw(j['aircraft'], fn)
+
+
 def tstr(t):
     tstr = datetime.fromtimestamp(int(t)).strftime('%H:%M:%S')
     return tstr
@@ -99,6 +112,8 @@ def tstr(t):
 def merge():
     seq = []
     for i, f in enumerate(traffic):
+        # print(f[0], f[3], f[2])
+        print(f)
 
         try:
             n = traffic[i + 1]
@@ -116,8 +131,8 @@ def to_csv():
     with open('traffic.csv', 'w') as f:
         for l in merge():
             l = "{},{},{}, {}, {}, {}".format(l[0], l[1], l[3], l[5], tstr(l[2]),
-                                           tstr(l[4]))
-            print(l)
+                                              tstr(l[4]))
+            # print(l)
             f.writelines(l + '\n')
 
 

@@ -1,6 +1,5 @@
 .vscode
 .DS_Store
 *pyc
-*csv
 db*
 screenshot*
