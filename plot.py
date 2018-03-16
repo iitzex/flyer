@@ -43,6 +43,3 @@ def bokeh_draw(lat, lon, callsign, t):
 
     export_png(plot, filename='screenshots/' + t + '.png')
 
-
-if __name__ == '__main__':
-    bokeh_draw('db/1520825649')

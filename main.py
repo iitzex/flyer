@@ -7,6 +7,7 @@ from json import JSONDecodeError
 from os import listdir
 
 from plot import bokeh_draw
+from actype import findbyHex
 
 R05L = (25.073076, 121.216158, 'R05L', '^=')
 N5 = (25.081736, 121.228739, 'N5  ', '=$')
@@ -54,7 +55,7 @@ def dist(p, scale, f, fn):
         elif d < lookup[k]:
             lookup[k] = d
             del traffic[-1]
-            traffic.append((cs, d, fn, p[2], p[3]))
+            traffic.append((cs, d, fn, p[2], p[3], f['hex']))
 
 
 def checkpoint(aircraft, fn):
@@ -119,7 +120,7 @@ def merge():
             n = traffic[i + 1]
             if f[0] == n[0]:
                 seq.append((f[0], f[3], f[2], n[3], n[2],
-                            int(n[2]) - int(f[2])))
+                            int(n[2]) - int(f[2]), f[5]))
 
         except IndexError:
             pass
@@ -130,10 +131,10 @@ def merge():
 def to_csv():
     with open('traffic.csv', 'w') as f:
         for l in merge():
-            l = "{},{},{}, {}, {}, {}".format(l[0], l[1], l[3], l[5], tstr(l[2]),
-                                              tstr(l[4]))
-            # print(l)
-            f.writelines(l + '\n')
+            msg = "{},{},{},{},{},{},{}".format(l[0], l[1], l[3], l[5], tstr(l[2]),
+                        tstr(l[4]), findbyHex(l[6]))
+            print(l)
+            f.writelines(msg + '\n')
 
 
 if __name__ == '__main__':
