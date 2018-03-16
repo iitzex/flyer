@@ -132,7 +132,7 @@ def to_csv():
     with open('traffic.csv', 'w') as f:
         for l in merge():
             msg = "{},{},{},{},{},{},{}".format(l[0], l[1], l[3], l[5], tstr(l[2]),
-                        tstr(l[4]), findbyHex(l[6]))
+                        tstr(l[4]), findbyHex(l[6]).replace('"', ''))
             print(l)
             f.writelines(msg + '\n')
 
