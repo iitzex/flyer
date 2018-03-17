@@ -18,13 +18,13 @@ def findbyCallsign(flight):
 
 
 d = {}
-with open('aircraftDatabase.csv', newline='') as f:
+with open('aircraft_db.csv') as f:
     reader = csv.reader(f)
-    d = dict((rows[0], rows[5]) for rows in reader)
+    d = dict((rows[0], rows[2]) for rows in reader)
 
 
 def findbyHex(hex):
-    return d[hex]
+    return (d[hex]).upper()
 
 
 if __name__ == '__main__':
